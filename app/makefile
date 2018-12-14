@@ -4,26 +4,28 @@ BINDIR=$(PREFIX)/bin
 
 INSTALL=install -m 755
 
-LINK=-lcure -lm
+LINK=-lzeda -lm
 
-CONFIG=cure-config
-CONFIGGEN=cure-config-gen
+CONFIG=zeda-config
+CONFIGGEN=zeda-config-gen
+CHKDEP=zeda-chkdep
 TARGET=$(CONFIG)
 
 #####################################################################
-all: install
+all: $(TARGET)
 
-$(CONFIG):
+config-gen: $(CONFIGGEN)
 	@echo " INSTALL" $(CONFIGGEN)
 	@$(INSTALL) $(CONFIGGEN) $(BINDIR)
-	@echo " GENERATE" $@
-	-@rm -f $@
-	@$(CONFIGGEN) -I $(PREFIX)/include -L $(PREFIX)/lib -l "$(LINK)" -v $(VERSION) > $@
-
-install: $(TARGET)
-	@echo " INSTALL" $^
+$(CONFIG):
+	@echo " GENERATE" $(CONFIG)
+	-@rm -f $(CONFIG)
+	@$(CONFIGGEN) -I $(PREFIX)/include -L $(PREFIX)/lib -l "$(LINK)" -v $(VERSION) > $(CONFIG)
+install: $(CHKDEP) $(TARGET)
+	@echo " INSTALL	" $(CHKDEP)
+	@$(INSTALL) $(CHKDEP) $(BINDIR)
+	@echo " INSTALL	" $^
 	@$(INSTALL) $^ $(BINDIR)
-
 clean:
 	@echo " CLEAN"
 	-@rm -f *.o *~ core $(TARGET)

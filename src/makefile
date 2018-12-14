@@ -8,16 +8,16 @@ CC=gcc
 CFLAGS=-ansi -Wall -fPIC -O3 $(INCLUDE) -funroll-loops
 LD=gcc
 LDFLAGS=-shared
-SIGNUP=echo "CURE ver."$(VERSION)" Copyright (C) 1998 Tomomichi Sugihara (Zhidao)" >>
+SIGNUP=echo "ZEDA ver."$(VERSION)" Copyright (C) 1998 Tomomichi Sugihara (Zhidao)" >>
 
-OBJ=cure_misc.o\
-	cure_string.o \
-	cure_bit.o cure_rand.o\
-	cure_index.o cure_stream.o cure_list.o cure_rrtab.o\
-	cure_strlist.o\
-	cure_option.o\
-	cure_bfile.o
-DLIB=libcure.so
+OBJ=zeda_misc.o\
+	zeda_string.o \
+	zeda_bit.o zeda_rand.o\
+	zeda_array.o zeda_index.o zeda_stream.o zeda_list.o zeda_rrtab.o\
+	zeda_strlist.o\
+	zeda_option.o\
+	zeda_bfile.o
+DLIB=libzeda.so
 
 TARGET=$(DLIB)
 

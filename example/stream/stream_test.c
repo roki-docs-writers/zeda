@@ -1,5 +1,5 @@
-#include <cure/cure_stream.h>
-#include <cure/cure_string.h>
+#include <zeda/zeda_stream.h>
+#include <zeda/zeda_string.h>
 
 int main(void)
 {

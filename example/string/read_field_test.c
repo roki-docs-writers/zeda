@@ -1,4 +1,4 @@
-#include <cure/cure_string.h>
+#include <zeda/zeda_string.h>
 
 typedef struct{
   char name[BUFSIZ];

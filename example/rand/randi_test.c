@@ -1,4 +1,4 @@
-#include <cure/cure_rand.h>
+#include <zeda/zeda_rand.h>
 
 #define N 100
 

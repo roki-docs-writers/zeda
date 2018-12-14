@@ -1,11 +1,11 @@
-CURE - Commonly-Used Routine Elements
+ZEDA - Elementary Data and Algorithms
 Copyright (C) 1998 Tomomichi Sugihara (Zhidao)
 
 -----------------------------------------------------------------
 [What is this?]
 
-CURE is a collection of frequently used structures and functions
-including:
+ZEDA is a collection of frequently used data structures and
+algorithms including:
 
  - bit operations
  - array operation
@@ -22,15 +22,15 @@ including:
 <install>
 1. Unpack the distributed archive where you want.
 
-% zcat cure-X.Y.Z.tgz | tar xvf
+% zcat zeda-X.Y.Z.tgz | tar xvf
 or, if you use GNU tar,
-% tar xzvf cure-X.Y.Z.tgz
+% tar xzvf zeda-X.Y.Z.tgz
 
 X.Y.Z is for the revision.
 
 2. Enter the directory.
 
-% cd cure-X.Y.Z
+% cd zeda-X.Y.Z
 
 3. Edit config file if necessary.
   PREFIX   directory where the library is installed.
@@ -48,12 +48,12 @@ X.Y.Z is for the revision.
 
 Or,
 
-% cp -a lib/libcure.so $PREFIX/lib/
-% cp -a include/cure $PREFIX/include/
+% cp -a lib/libzeda.so $PREFIX/lib/
+% cp -a include/zeda $PREFIX/include/
 % cp -a bin/* $PREFIX/bin/
 
 <uninstall>
-Delete $PREFIX/lib/libcure.so and $PREFIX/include/cure.
+Delete $PREFIX/lib/libzeda.so and $PREFIX/include/zeda.
 
 -----------------------------------------------------------------
 [How to use]
@@ -70,7 +70,7 @@ if your working shell is C shell (csh, tcsh, etc.).
 When you want to compile your code test.c, for example, the following
 line will work.
 
-% gcc `cure-config -L` `cure-config -I` test.c `cure-config -l`
+% gcc `zeda-config -L` `zeda-config -I` test.c `zeda-config -l`
 
 -----------------------------------------------------------------
 [Documents]
