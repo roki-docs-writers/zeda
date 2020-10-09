@@ -1,3 +1,4 @@
+2015. 4.28. Added zCopy. [cure_misc]
 2015. 4.11. Added zListToHead and zListToTail. [cure_list]
 2015. 4.11. Modified zOptionRead so as to store unrecognized command line arguments into a list of strings. [cure_option]
 2015. 4.11. Added zStrList class. [cure_strlist]
