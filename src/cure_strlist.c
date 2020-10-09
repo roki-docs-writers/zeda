@@ -10,7 +10,7 @@
 /* zStrListInsert
  * - insert a string to a list of strings.
  */
-zStrListCell *zStrListInsert(zStrList *list, char str[])
+zStrListCell *zStrListInsert(zStrList *list, char *str, bool clone)
 {
   zStrListCell *cell;
 
@@ -18,11 +18,14 @@ zStrListCell *zStrListInsert(zStrList *list, char str[])
     ZALLOCERROR();
     return NULL;
   }
-  if( !( cell->data = zStrClone( str ) ) ){
-    ZALLOCERROR();
-    free( cell );
-    return NULL;
-  }
+  if( clone ){
+    if( !( cell->data = zStrClone( str ) ) ){
+      ZALLOCERROR();
+      free( cell );
+      return NULL;
+    }
+  } else
+    cell->data = str;
   zListInsertHead( list, cell );
   return cell;
 }
@@ -30,22 +33,23 @@ zStrListCell *zStrListInsert(zStrList *list, char str[])
 /* zStrListCellFree
  * - free a cell of a list of strings.
  */
-void zStrListCellFree(zStrListCell *cell)
+void zStrListCellFree(zStrListCell *cell, bool clone)
 {
-  free( cell->data );
+  if( clone )
+    free( cell->data );
   free( cell );
 }
 
 /* zStrListDestroy
  * - destroy a list of strings.
  */
-void zStrListDestroy(zStrList *list)
+void zStrListDestroy(zStrList *list, bool clone)
 {
   zStrListCell *cell;
 
   while( !zListIsEmpty( list ) ){
     zListDeleteTail( list, &cell );
-    zStrListCellFree( cell );
+    zStrListCellFree( cell, clone );
   }
 }
 

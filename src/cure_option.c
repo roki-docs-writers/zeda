@@ -55,33 +55,35 @@ void zOptionDiag(zOption *opts)
  * _zOptionFindKey, _zOptionFindLongKey
  * - find option structure by a key.
  */
-static zOption *_zOptionFindKey(zOption *opts, char *key);
-static zOption *_zOptionFindLongKey(zOption *opts, char *key);
+static bool _zOptionFindKey(zOption *opts, char *key, zOption **cur);
+static bool _zOptionFindLongKey(zOption *opts, char *key, zOption **cur);
 
-zOption *_zOptionFindKey(zOption *opts, char *key)
+bool _zOptionFindKey(zOption *opts, char *key, zOption **cur)
 {
   zOption *op;
 
   for( op=opts; op->key || op->longkey; op++ )
-    if( op->key && !strcmp( op->key, key ) ){
+    if( op->key && strcmp( op->key, key ) == 0 ){
       op->flag = true;
-      return op->arg_guide ? op : NULL;
+      *cur = op->arg_guide ? op : NULL;
+      return true;
     }
   ZRUNWARN( "unknown option: %s", key );
-  return NULL;
+  return false;
 }
 
-zOption *_zOptionFindLongKey(zOption *opts, char *key)
+bool _zOptionFindLongKey(zOption *opts, char *key, zOption **cur)
 {
   zOption *op;
 
   for( op=opts; op->key || op->longkey; op++ )
     if( op->longkey && !strcmp( op->longkey, key ) ){
       op->flag = true;
-      return op;
+      *cur = op->arg_guide ? op : NULL;
+      return true;
     }
   ZRUNWARN( "unknown option: %s", key );
-  return NULL;
+  return false;
 }
 
 /* zOptionRead
@@ -101,17 +103,17 @@ bool zOptionRead(zOption *opts, char **argv, zStrList *arglist)
         cnt = false;
         cur = NULL;
       } else{
-        if( arglist && !zStrListInsert( arglist, *argv ) ){
+        if( arglist && !zStrListInsert( arglist, *argv, false ) ){
           ret = false;
         }
       }
       continue;
     }
     if( (*argv)[1] != '-' ){
-      if( !( cur = _zOptionFindKey( opts, *argv+1 ) ) ) ret = false;
+      ret = _zOptionFindKey( opts, *argv+1, &cur );
     } else
     if( (*argv)[2] ){
-      if( !( cur = _zOptionFindLongKey( opts, *argv+2 ) ) ) ret = false;
+      ret = _zOptionFindLongKey( opts, *argv+2, &cur );
     } else
       cnt = true;
   }

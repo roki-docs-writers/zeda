@@ -20,13 +20,13 @@ __BEGIN_DECLS
 zListClass(zStrList, zStrListCell, char *);
 
 /*! \brief insert a string to a list of strings from the tail. */
-__EXPORT zStrListCell *zStrListInsert(zStrList *list, char str[]);
+__EXPORT zStrListCell *zStrListInsert(zStrList *list, char *str, bool clone);
 
 /*! \brief free a cell of a list of strings. */
-__EXPORT void zStrListCellFree(zStrListCell *cell);
+__EXPORT void zStrListCellFree(zStrListCell *cell, bool clone);
 
 /*! \brief destroy a list of strings. */
-__EXPORT void zStrListDestroy(zStrList *list);
+__EXPORT void zStrListDestroy(zStrList *list, bool clone);
 
 /*! \brief get pointers to strings of a list. */
 __EXPORT void zStrListGetPtr(zStrList *strlist, int n, ...);
