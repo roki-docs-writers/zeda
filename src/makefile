@@ -15,7 +15,8 @@ OBJ=cure_misc.o\
 	cure_bit.o cure_rand.o\
 	cure_index.o cure_stream.o cure_list.o cure_rrtab.o\
 	cure_strlist.o\
-	cure_option.o
+	cure_option.o\
+	cure_bfile.o
 DLIB=libcure.so
 
 TARGET=$(DLIB)

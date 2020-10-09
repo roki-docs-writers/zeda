@@ -65,7 +65,7 @@ __EXPORT double zBound(double x, double b1, double b2);
  */
 #define zAlloc(t,n) ( (n) == 0 ? NULL : (t *)calloc( (n), sizeof(t) ) )
 #define zFree(m)    do{ if((m)){ free(m); (m)=NULL; } } while(0)
-#define zCopy(t,s,d) ( (t *)memcpy( d, s, sizeof(t) ) )
+#define zCopy(t,s,d) ( memcpy( d, s, sizeof(t) ) )
 
 #ifndef __KERNEL__
 #define zRealloc(m,t,n) (t *)realloc( (void *)m, sizeof(t)*(n) )

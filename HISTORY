@@ -1,3 +1,4 @@
+2018. 7. 9. Added cure_bfile. (by Naoki Wakisaka)
 2015. 5. 3. Debugged _zOptionFindKey and _zOptionFindLongKey. [cure_option]
 2015. 5. 3. Modified zOptionRead. [cure_option]
 2015. 5. 3. Modified zStrListInsert to choose if it clones the given string. [cure_strlist]
